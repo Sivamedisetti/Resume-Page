@@ -92,6 +92,12 @@ article {
     }
 }
 
+@media screen and (max-width: 600px) {
+    .techstack{
+        flex-wrap: wrap;
+    }
+}
+
 .techstack {
     display: flex;
     flex-direction: row;
