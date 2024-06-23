@@ -4,11 +4,6 @@ on:
   push:
     branches: [main]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -16,16 +11,15 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v4
 
-      - name: Clear npm cache
-        run: npm cache clean --force
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '18'  # Adjust to the latest Node.js 14.x version
+          node-version: '14'  # Adjust to the latest Node.js 14.x version or as needed
 
       - name: Install Dependencies
-        run: npm install
+        run: |
+          npm ci --verbose
+          npm audit fix --force  # Apply fixes for vulnerabilities
 
       - name: Build Project
         run: npm run build
