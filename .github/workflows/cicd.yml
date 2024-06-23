@@ -18,6 +18,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
             node-version: 20
+      - name: npm installing
+        run: npm install
       - name: Install Dependencies
         run: npm ci
       - name: Build Project
